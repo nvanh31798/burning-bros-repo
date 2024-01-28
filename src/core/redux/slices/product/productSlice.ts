@@ -9,8 +9,9 @@ import { ActionStatusEnum } from "../../models/ActionStatusEnum";
 
 export interface ProductState {
   products: Product[];
-  isSearching: boolean;
+  searchValue?: string;
   fetchStatus: ActionStatusEnum;
+  isSearching?: boolean;
   total?: number;
 }
 
@@ -28,15 +29,21 @@ export const productSlice = createSlice({
     addProducts: (state, action: PayloadAction<Product[]>) => {
       state.products = state.products.concat(action.payload);
     },
-    setIsSearchingProduct: (state, action: PayloadAction<boolean>) => {
-      state.isSearching = action.payload;
+    setSearchValue: (state, action: PayloadAction<string | undefined>) => {
+      state.searchValue = action.payload;
+      if (!action.payload) {
+        state.isSearching = false;
+        return;
+      }
+      state.isSearching = true;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(getAllProducts.fulfilled, (state, action) => {
       state.fetchStatus = ActionStatusEnum.Success;
-      if (!state.products || state.products?.length === 0) {
+      if (!action.payload.skip) {
         state.products = action.payload.products;
+        return;
       }
       state.products = state.products?.concat(action.payload?.products);
     });
@@ -51,8 +58,12 @@ export const productSlice = createSlice({
 
     builder.addCase(searchProducts.fulfilled, (state, action) => {
       state.fetchStatus = ActionStatusEnum.Success;
-      state.products = action.payload.products;
       state.total = action.payload.total;
+      if (action.payload.skip && action.payload.skip > 0) {
+        state.products = state.products.concat(action.payload.products);
+        return;
+      }
+      state.products = action.payload.products;
     });
 
     builder.addCase(searchProducts.pending, (state) => {
@@ -66,6 +77,6 @@ export const productSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addProducts, setIsSearchingProduct } = productSlice.actions;
+export const { addProducts, setSearchValue } = productSlice.actions;
 
 export default productSlice.reducer;

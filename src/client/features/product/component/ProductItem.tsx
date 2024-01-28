@@ -22,7 +22,7 @@ export const ProductItem = ({ product }: ProductItemProps) => {
   };
 
   return (
-    <div className="card overflow-x-hidden overflow-y-scroll card-sizing py-2">
+    <div className="card overflow-x-hidden overflow-y-scroll card-sizing py-2 hide-scrollbar m-auto">
       <div className="card-img-top">
         <ImageGallery
           showFullscreenButton={false}

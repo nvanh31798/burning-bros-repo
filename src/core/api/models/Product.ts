@@ -8,6 +8,7 @@ export interface QueryProductRequest {
 export interface QueryProductResponse {
   total: number;
   products: Product[];
+  skip?: number;
 }
 
 export interface SearchProductsRequest {

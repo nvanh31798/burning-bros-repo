@@ -15,7 +15,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "sourceMap": true,
-    "types": ["webrtc"],
+    "types": ["webrtc", "node"],
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",

@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <div className="bg-secondary p-5 mb-5">
-        <h1>Burning bros interview</h1>
+        <h1>Burning bros interview test</h1>
       </div>
       <div>
         <SearchBar />

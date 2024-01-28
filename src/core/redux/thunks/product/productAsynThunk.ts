@@ -26,7 +26,11 @@ export const getAllProducts = createAsyncThunk<
     return await response
       .json()
       .then((res) => {
-        return { products: res.products as Product[], total: res.total };
+        return {
+          products: res.products as Product[],
+          total: res.total,
+          skip: skip,
+        };
       })
       .catch((error) => rejectWithValue("Invalid response" + error));
   }
@@ -38,9 +42,9 @@ export const searchProducts = createAsyncThunk<
   AsyncThunkConfig
 >(
   "products/searchProducts",
-  async ({ value }: SearchProductsRequest, { rejectWithValue }) => {
-
+  async ({ value, skip }: SearchProductsRequest, { rejectWithValue }) => {
     const response = await ProductApi().searchProducts({
+      skip: skip,
       value: value,
     } as SearchProductsRequest);
 
@@ -51,7 +55,11 @@ export const searchProducts = createAsyncThunk<
     return await response
       .json()
       .then((res) => {
-        return { products: res.products as Product[], total: res.total };
+        return {
+          products: res.products as Product[],
+          total: res.total,
+          skip: skip,
+        };
       })
       .catch((error) => rejectWithValue("Invalid response" + error));
   }
