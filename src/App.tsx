@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { SearchBar } from "./client/common-components/SearchBar/SearchBar";
+import { ProductList } from "./client/features/product/component/ProductList";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="bg-secondary p-5 mb-5">
+        <h1>Burning bros interview</h1>
+      </div>
+      <div>
+        <SearchBar />
+        <ProductList />
+      </div>
     </div>
   );
 }
