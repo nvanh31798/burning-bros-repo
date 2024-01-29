@@ -52,14 +52,13 @@ export const ProductList = () => {
   };
 
   useEffect(() => {
-    if (isSearching) {
+    if (isSearching && !skip) {
       return;
     }
     getProducts(skip);
   }, [skip, isSearching]);
 
   useEffect(() => {
-    console.log("searching");
     setSkip(0);
   }, [isSearching]);
 
