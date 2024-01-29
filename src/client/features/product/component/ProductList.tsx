@@ -12,6 +12,7 @@ import {
 } from "../../../../core/redux/thunks/product/productAsynThunk";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { ActionStatusEnum } from "../../../../core/redux/models/ActionStatusEnum";
+import { TestID } from "../../../../core";
 
 export const ProductList = () => {
   const dispatch = useAppDispatch();
@@ -63,7 +64,7 @@ export const ProductList = () => {
   }, [isSearching]);
 
   return (
-    <div>
+    <div data-testid={TestID.PRODUCT_LIST}>
       <InfiniteScroll
         pullDownToRefresh={true}
         refreshFunction={() => getProducts(skip)}
@@ -76,9 +77,13 @@ export const ProductList = () => {
       >
         <div className="container-fluid">
           <div className="row">
-            {products?.map((item) => (
+            {products?.map((item, index) => (
               <div className="col-3 mt-5">
-                <ProductItem product={item} />
+                <ProductItem
+                  key={`${TestID.PRODUCT_ITEM}_${index}`}
+                  testId={`${TestID.PRODUCT_ITEM}_${index}`}
+                  product={item}
+                />
               </div>
             ))}
           </div>

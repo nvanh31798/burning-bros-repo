@@ -1,0 +1,4 @@
+export enum TestID {
+  PRODUCT_LIST = "PRODUCT_LIST",
+  PRODUCT_ITEM = "PRODUCT_ITEM",
+}

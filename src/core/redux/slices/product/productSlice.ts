@@ -6,6 +6,7 @@ import {
   searchProducts,
 } from "../../thunks/product/productAsynThunk";
 import { ActionStatusEnum } from "../../models/ActionStatusEnum";
+import mockProducsResponse from "../../../../test/mock/mockProduct/get.json";
 
 export interface ProductState {
   products: Product[];
@@ -15,12 +16,24 @@ export interface ProductState {
   total?: number;
 }
 
-const initialState: ProductState = {
-  products: [],
+const isUsingMock = process.env.REACT_APP_USING_MOCK;
+
+const mockInitialProductState = {
+  products: mockProducsResponse.products as Product[],
   isSearching: false,
   fetchStatus: ActionStatusEnum.Idle,
-  total: 100,
-};
+  total: mockProducsResponse.total,
+} as ProductState;
+
+const initialState: ProductState = isUsingMock
+  ? mockInitialProductState
+  : {
+      products: [],
+      isSearching: false,
+      fetchStatus: ActionStatusEnum.Idle,
+      total: 100,
+    };
+
 
 export const productSlice = createSlice({
   name: "action/product",

@@ -4,10 +4,10 @@ import ImageGallery from "react-image-gallery";
 
 interface ProductItemProps {
   product: Product;
+  testId: string;
 }
 
-export const ProductItem = ({ product }: ProductItemProps) => {
-
+export const ProductItem = ({ testId, product }: ProductItemProps) => {
   const renderImages = () => {
     return product.images?.map((image) => {
       return {
@@ -22,7 +22,10 @@ export const ProductItem = ({ product }: ProductItemProps) => {
   };
 
   return (
-    <div className="card overflow-x-hidden overflow-y-scroll card-sizing py-2 hide-scrollbar m-auto">
+    <div
+      data-testid={testId}
+      className="card overflow-x-hidden overflow-y-scroll card-sizing py-2 hide-scrollbar m-auto"
+    >
       <div className="card-img-top">
         <ImageGallery
           showFullscreenButton={false}
@@ -48,7 +51,9 @@ export const ProductItem = ({ product }: ProductItemProps) => {
 
             <div className="fw-bold"></div>
             <p className="fw-bolder success text-success">$ {product?.price}</p>
-            <p className="fs-6 fw-lighter fst-italic">{product?.stock} items left</p>
+            <p className="fs-6 fw-lighter fst-italic">
+              {product?.stock} items left
+            </p>
           </div>
           <div>
             <button
