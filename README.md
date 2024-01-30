@@ -1,46 +1,82 @@
-# Getting Started with Create React App
+# Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+This project build on top of the requirement of burning bros requirement, which can be found [here](https://dabivn.notion.site/Coding-Project-Infinite-Scrolling-and-Searchable-Product-List-e269e607507d4e43ac0c50603f74897b) .
 
-## Available Scripts
+#### To sum up, it contains 2 main feature:
+* Display product
+  * Each time the user scrolls to the end of the list, fetch the next 20 products.
+  * Display the list of products with relevant information (e.g., name, price, image).
+* Search product
+  * Implement an input for searching product name.
+    Whenever user typing, fetch data and update the product list.
+  * Products data should be deserialized after fetched from api.
 
-In the project directory, you can run:
+API: [open link](https://dummyjson.com/docs/products)
+***
+## How to start the project
+### Pre-requirement:
+* NodeJS: 18.6.0 (or higher)
+### Steps:
+1. Install the package using `npm install`
 
-### `npm start`
+2. Start the app locally using `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. Open [localhost](http://localhost:3006) to view it in the browser. 
+***
+## Technical Note:
+### 1. Library included
+| Library                         | version | Description                                        |
+|---------------------------------|---------|----------------------------------------------------|
+| material-ui                     | 5.15.6 | UI component library                               |
+| redux                           | 5.0.1 | State management                                   |
+| react-infinite-scroll-component | 6.1.0 | Should allow multiple lines input. Default "false" |
+| bootstrap                       | 5.3.2 | bootstrap                                          |
+| react-image-gallery             | 1.2.4 | Image gallary handle                               |
+| react-app-rewired               | 2.2.1 | Start react app with override config opionÏ        |
+| cypress                             |13.6.3  | Supporting E2E, integration testing                |
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 2. Test Run
+* #### How to execute unit test:
+1. Install the package using `npm install`
 
-### `npm test`
+2. Start testing using `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* #### unit test adding:
+Please following the folder structure below
 
-### `npm run build`
+```
+root
+  └───src
+  │    └───test
+  │      └───...
+   ...
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* #### cypress:
+Currently, cypress is not fully config.
+  * open cypress UI using `npm cypress:open`
+  
+### 3. Components
+* #### ProductList
+  This component responsible to render list of products.
+  
+* #### ProductItem
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    This component responsible to render products information (etc: name, price .).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+*Table of definitions*
 
-### `npm run eject`
+| props                    | tpye       | description         |
+|--------------------------|------------|---------------------|
+| product                  | Product    | product information |
+| testId                   | TestIdEnum | Testing purpose     |
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 4. Environment
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Variable                        | DEV                       | OTHER |
+|---------------------------------|---------------------------|-------|
+| REACT_APP_USING_MOCK                     | false                     | TBD   |
+| REACT_APP_BASE_URL                           | https://localhost:3006    | TBD   |
+| REACT_APP_PORT | 3006                          | TBD   |
+| REACT_APP_PRODUCT_SERVICE | https://dummyjson.com/products | TBD   |
